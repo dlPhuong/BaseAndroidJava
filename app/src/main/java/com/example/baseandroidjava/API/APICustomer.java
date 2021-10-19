@@ -5,6 +5,7 @@ import com.example.baseandroidjava.models.entity.User;
 import com.example.baseandroidjava.models.request.LoginRequest;
 import com.example.baseandroidjava.models.request.ManagedUserVM;
 import com.example.baseandroidjava.models.response.BaseResponse;
+import com.example.baseandroidjava.models.response.CustomerRes;
 import com.example.baseandroidjava.models.response.CustomerResponse;
 import com.example.baseandroidjava.models.response.TokenResponse;
 
@@ -18,8 +19,11 @@ import retrofit2.http.Query;
 
 public interface APICustomer {
 
+//    @POST("api/customers")
+//    Call<BaseResponse> createCustomer(@Body Customer customer);
+
     @POST("api/customers")
-    Call<BaseResponse> createCustomer(@Body Customer customer);
+    Call<CustomerRes<Customer>> createCustomer(@Body Customer customer);
 
     @PUT("api/customers")
     Call<BaseResponse> updateCustomer(@Body Customer customer);

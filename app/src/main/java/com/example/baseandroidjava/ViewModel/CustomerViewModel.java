@@ -15,6 +15,7 @@ import com.example.baseandroidjava.models.entity.User;
 import com.example.baseandroidjava.models.request.LoginRequest;
 import com.example.baseandroidjava.models.request.ManagedUserVM;
 import com.example.baseandroidjava.models.response.BaseResponse;
+import com.example.baseandroidjava.models.response.CustomerRes;
 import com.example.baseandroidjava.models.response.CustomerResponse;
 import com.example.baseandroidjava.models.response.TokenResponse;
 
@@ -43,18 +44,36 @@ public class CustomerViewModel extends ViewModel {
         return newsData;
     }
 
-    public MutableLiveData<BaseResponse> createCustomer(Customer customer){
-        MutableLiveData<BaseResponse> newdata = new MutableLiveData<>();
-        apiAuth.createCustomer(customer).enqueue(new Callback<BaseResponse>() {
+//    public MutableLiveData<BaseResponse> createCustomer(Customer customer){
+//        MutableLiveData<BaseResponse> newdata = new MutableLiveData<>();
+//        apiAuth.createCustomer(customer).enqueue(new Callback<BaseResponse>() {
+//            @Override
+//            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+//                if(response.isSuccessful()){
+//                    newdata.setValue(response.body());
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<BaseResponse> call, Throwable t) {
+//
+//            }
+//        });
+//        return newdata;
+//    }
+
+    public MutableLiveData<CustomerRes<Customer>> createCustomer(Customer customer){
+        MutableLiveData<CustomerRes<Customer>> newdata = new MutableLiveData<>();
+        apiAuth.createCustomer(customer).enqueue(new Callback<CustomerRes<Customer>>() {
             @Override
-            public void onResponse(Call<BaseResponse> call, Response<BaseResponse> response) {
+            public void onResponse(Call<CustomerRes<Customer>> call, Response<CustomerRes<Customer>> response) {
                 if(response.isSuccessful()){
                     newdata.setValue(response.body());
                 }
             }
 
             @Override
-            public void onFailure(Call<BaseResponse> call, Throwable t) {
+            public void onFailure(Call<CustomerRes<Customer>> call, Throwable t) {
 
             }
         });
